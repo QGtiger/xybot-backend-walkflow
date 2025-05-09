@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { existsSync } from 'fs';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { CommonFilter } from './common/common.filter';
+import { CommonInterceptor } from './common/common.interceptor';
+import { WalkflowModule } from './walkflow/walkflow.module';
+import { UserWalkflows } from './walkflow/entities/user_walkflows.entity';
 
 const getEnvFiles = () => {
   const env = process.env.NODE_ENV || 'development';
@@ -25,7 +28,6 @@ const getEnvFiles = () => {
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        console.log(configService);
         return {
           type: 'mysql',
           host: configService.get('MYSQL_SERVER_HOST'),
@@ -35,7 +37,7 @@ const getEnvFiles = () => {
           database: configService.get('MYSQL_SERVER_DATABASE'),
           synchronize: true,
           logging: true,
-          entities: [],
+          entities: [UserWalkflows],
           poolSize: 10,
           connectorPackage: 'mysql2',
           extra: {
@@ -44,8 +46,18 @@ const getEnvFiles = () => {
         };
       },
     }),
+    WalkflowModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: CommonFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CommonInterceptor,
+    },
+  ],
 })
 export class AppModule {}
