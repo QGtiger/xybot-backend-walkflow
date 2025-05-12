@@ -19,8 +19,11 @@ export function IsSchemaV1(validationOptions?: ValidationOptions) {
             return false;
           }
 
-          // 2. 校验必填字段 screenshotUrl
-          if (typeof value.screenshotUrl !== 'string' || !value.screenshotUrl) {
+          // 2. 校验必填字段 screenRecordingUrl
+          if (
+            typeof value.screenRecordingUrl !== 'string' ||
+            !value.screenRecordingUrl
+          ) {
             return false;
           }
 

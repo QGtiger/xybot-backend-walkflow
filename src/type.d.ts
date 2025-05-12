@@ -13,3 +13,16 @@ declare module 'express' {
     body: any;
   }
 }
+
+interface ExtensionSchemaV1 {
+  screenRecordingUrl: string;
+  clicks: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    t: number;
+    innerText: string;
+    screenshotUrl: string;
+  }[];
+}

@@ -9,7 +9,6 @@ import {
 export enum FlowStatus {
   DRAFT = 'draft', // 草稿
   PUBLISHED = 'published', // 已发布
-  EDITED = 'edited', // 已编辑
 }
 
 interface ChapterStep {
@@ -42,7 +41,7 @@ interface HotSpotStep {
 }
 
 export interface FlowSchemaV1 {
-  schema: '1.0';
+  version: '1.0';
   config: {
     screenRecordingUrl: string;
     steps: Array<ChapterStep | HotSpotStep>;

@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  CreateUserWalkflowDto,
-  ExtensionSchemaV1,
-} from './dto/create-walkflow.dto';
+import { CreateUserWalkflowDto } from './dto/create-walkflow.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FlowSchemaV1, UserWalkflows } from './entities/user_walkflows.entity';
 import { Repository } from 'typeorm';
@@ -18,7 +15,7 @@ export class WalkflowService {
   private convertExtensionSchemaToWalkflowSchema(
     schema: ExtensionSchemaV1,
   ): FlowSchemaV1 {
-    const { clicks, screenshotUrl } = schema;
+    const { clicks, screenRecordingUrl } = schema;
 
     const steps = clicks.reduce(
       (acc, click) => {
@@ -58,9 +55,9 @@ export class WalkflowService {
     );
 
     return {
-      schema: '1.0',
+      version: '1.0',
       config: {
-        screenRecordingUrl: screenshotUrl,
+        screenRecordingUrl: screenRecordingUrl,
         steps,
       },
     };
@@ -136,7 +133,7 @@ export class WalkflowService {
       flowName: walkflow.flowName,
       thumbnail: walkflow.thumbnail,
       createdAt: walkflow.createdAt.getTime(),
-      updateAt: walkflow.updatedAt.getTime(),
+      updatedAt: walkflow.updatedAt.getTime(),
       flowStatus: walkflow.flowStatus,
     }));
   }

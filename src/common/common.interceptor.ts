@@ -18,6 +18,7 @@ export class CommonInterceptor implements NestInterceptor {
       map((data) => ({
         success: true,
         data,
+        code: 200,
       })),
     );
   }
