@@ -34,15 +34,7 @@ export function IsSchemaV1(validationOptions?: ValidationOptions) {
 
           // 4. 遍历 clicks 中的每个对象
           for (const click of value.clicks) {
-            const requiredKeys = [
-              'x',
-              'y',
-              'w',
-              'h',
-              't',
-              'innerText',
-              'screenshotUrl',
-            ];
+            const requiredKeys = ['x', 'y', 'w', 'h', 't', 'screenshotUrl'];
             // 检查必填字段是否存在且类型正确
             if (
               !requiredKeys.every((key) => key in click) ||
@@ -51,7 +43,6 @@ export function IsSchemaV1(validationOptions?: ValidationOptions) {
               typeof click.w !== 'number' ||
               typeof click.h !== 'number' ||
               typeof click.t !== 'number' ||
-              typeof click.innerText !== 'string' ||
               typeof click.screenshotUrl !== 'string'
             ) {
               return false;

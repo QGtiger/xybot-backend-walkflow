@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserWalkflowDto } from './dto/create-walkflow.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FlowSchemaV1, UserWalkflows } from './entities/user_walkflows.entity';
+import { UserWalkflows } from './entities/user_walkflows.entity';
 import { Repository } from 'typeorm';
 import { generateUuid } from 'src/utils';
 import { DelUserWalkflowDto } from './dto/del-walkflow.dto';
@@ -56,6 +56,7 @@ export class WalkflowService {
 
     return {
       version: '1.0',
+      designer: {},
       config: {
         screenRecordingUrl: screenRecordingUrl,
         steps,
@@ -115,10 +116,11 @@ export class WalkflowService {
 
     Object.assign(walkflow, {
       flowName: data.name || walkflow.flowName,
+      schemaJson: data.schema || walkflow.schemaJson,
     });
 
     // 更新数据
-    await this.userWalkflowsRepository.save(walkflow);
+    await this.userWalkflowsRepository.update(walkflow.id, walkflow);
   }
 
   async getWalkflowList(userId: string) {

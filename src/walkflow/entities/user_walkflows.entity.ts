@@ -11,43 +11,6 @@ export enum FlowStatus {
   PUBLISHED = 'published', // 已发布
 }
 
-interface ChapterStep {
-  uid: string;
-  type: 'chapter';
-  name?: string;
-  title?: string;
-  subtitle?: string;
-  align: 'left' | 'center' | 'right';
-  actions: {
-    type: 'button';
-    text: string;
-    destination: string;
-  }[];
-}
-
-interface HotSpotStep {
-  uid: string;
-  type: 'hotspot';
-  name?: string;
-  title?: string;
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  t: number;
-  align: 'left' | 'center' | 'right';
-  screenshotUrl: string;
-  destination: string;
-}
-
-export interface FlowSchemaV1 {
-  version: '1.0';
-  config: {
-    screenRecordingUrl: string;
-    steps: Array<ChapterStep | HotSpotStep>;
-  };
-}
-
 @Entity({
   name: 'walkflow_user_flows',
 })
