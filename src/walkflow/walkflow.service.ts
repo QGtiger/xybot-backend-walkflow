@@ -153,4 +153,24 @@ export class WalkflowService {
       schema: walkflow.schemaJson,
     };
   }
+
+  async getWalkflowDetailByFlowId(flowId: string) {
+    const walkflow = await this.userWalkflowsRepository.findOne({
+      where: {
+        flowId,
+      },
+    });
+    if (!walkflow) {
+      throw new Error('Walkflow not found');
+    }
+    return {
+      flowId: walkflow.flowId,
+      flowName: walkflow.flowName,
+      thumbnail: walkflow.thumbnail,
+      createdAt: walkflow.createdAt.getTime(),
+      updateAt: walkflow.updatedAt.getTime(),
+      flowStatus: walkflow.flowStatus,
+      schema: walkflow.schemaJson,
+    };
+  }
 }
