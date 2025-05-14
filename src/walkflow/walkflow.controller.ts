@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { WalkflowService } from './walkflow.service';
-import { RequireLogin, UserInfo } from 'src/common/custom.decorator';
-import { LoginGuard } from 'src/common/login.guard';
+import { RequireLogin, UserInfo } from '../common/custom.decorator';
+import { LoginGuard } from '../common/login.guard';
 import { CreateUserWalkflowDto } from './dto/create-walkflow.dto';
 import { DelUserWalkflowDto } from './dto/del-walkflow.dto';
 import { UpdateWalkflowDto } from './dto/update-walkflow.dto';

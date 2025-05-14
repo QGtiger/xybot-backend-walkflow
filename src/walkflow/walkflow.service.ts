@@ -3,7 +3,7 @@ import { CreateUserWalkflowDto } from './dto/create-walkflow.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserWalkflows } from './entities/user_walkflows.entity';
 import { Repository } from 'typeorm';
-import { generateUuid } from 'src/utils';
+import { generateUuid } from '../utils';
 import { DelUserWalkflowDto } from './dto/del-walkflow.dto';
 import { UpdateWalkflowDto } from './dto/update-walkflow.dto';
 
