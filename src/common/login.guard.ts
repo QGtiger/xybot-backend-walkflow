@@ -28,13 +28,13 @@ export class LoginGuard implements CanActivate {
 
     if (!requireLoginFlag) return true;
 
-    const { walkflow_userid } = request.headers;
-    if (!walkflow_userid) {
+    const { walkflowuserid } = request.headers;
+    if (!walkflowuserid) {
       throw new UnauthorizedException('请先登录');
     }
 
     request.user = {
-      id: walkflow_userid,
+      id: walkflowuserid,
     };
 
     return true;

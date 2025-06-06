@@ -5,7 +5,7 @@ declare module 'express' {
     };
     headers: {
       authorization: `Bearer ${string}`;
-      walkflow_userid: string;
+      walkflowuserid: string;
     };
     ip: string;
     method: string;
