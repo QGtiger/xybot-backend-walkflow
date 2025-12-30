@@ -8,6 +8,9 @@ import { CommonInterceptor } from './common/common.interceptor';
 import { WalkflowModule } from './walkflow/walkflow.module';
 import { UserWalkflows } from './walkflow/entities/user_walkflows.entity';
 
+import { WorkOrderConclusion } from './workOrderConclusion/entities/work_order_conclusion.entity';
+import { WorkOrderConclusionModule } from './workOrderConclusion/workOrderConslusion.module';
+
 const getEnvFiles = () => {
   const env = process.env.NODE_ENV || 'development';
   const baseFiles = [`.env.${env}.local`, `.env.local`, `.env.${env}`, '.env'];
@@ -37,7 +40,7 @@ const getEnvFiles = () => {
           database: configService.get('MYSQL_SERVER_DATABASE'),
           synchronize: true,
           logging: false,
-          entities: [UserWalkflows],
+          entities: [UserWalkflows, WorkOrderConclusion],
           poolSize: 10,
           connectorPackage: 'mysql2',
           extra: {
@@ -47,6 +50,7 @@ const getEnvFiles = () => {
       },
     }),
     WalkflowModule,
+    WorkOrderConclusionModule,
   ],
   controllers: [],
   providers: [
