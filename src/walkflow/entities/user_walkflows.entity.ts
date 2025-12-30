@@ -47,6 +47,11 @@ export class UserWalkflows {
   })
   schemaJson: FlowSchemaV1;
 
+  @Column({
+    type: 'json',
+  })
+  flowPostSchema: any;
+
   @CreateDateColumn()
   createdAt: Date;
 

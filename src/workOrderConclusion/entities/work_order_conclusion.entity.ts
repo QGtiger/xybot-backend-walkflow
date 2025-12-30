@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity({
-  name: 'WorkOrderConclusion',
+  name: 'work_order_conclusion',
 })
 export class WorkOrderConclusion {
   @PrimaryGeneratedColumn()
